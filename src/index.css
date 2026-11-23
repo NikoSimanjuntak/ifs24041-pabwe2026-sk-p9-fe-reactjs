@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+
+/* Tema gelap dikendalikan atribut data-theme pada <html> (lihat useTheme.js) */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+:root {
+  --accent: #4f46e5;
+  --accent-soft: #eef2ff;
+}
+[data-accent='emerald'] { --accent: #059669; --accent-soft: #ecfdf5; }
+[data-accent='rose'] { --accent: #e11d48; --accent-soft: #fff1f2; }
+[data-accent='amber'] { --accent: #d97706; --accent-soft: #fffbeb; }
+
+body {
+  margin: 0;
+  background: #f8fafc;
+  color: #0f172a;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+[data-theme='dark'] body {
+  background: #020617;
+  color: #e2e8f0;
+}
