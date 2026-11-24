@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { Suspense, lazy, useCallback, useEffect, useState } from 'react'
 import useTheme from './hooks/useTheme'
 import { getToken, setToken } from './helpers/apiHelper'
 import { getProfile, logout as logoutRequest } from './features/auth/api/authApi'
@@ -6,9 +6,11 @@ import AuthPage from './features/auth/components/AuthPage'
 import AuthModal from './features/auth/modals/AuthModal'
 import StickyNavbar from './features/blog/components/StickyNavbar'
 import PublicArticleList from './features/blog/components/PublicArticleList'
-import PublicArticleDetail from './features/blog/components/PublicArticleDetail'
-import AuthorDashboard from './features/blog/components/AuthorDashboard'
-import AdminDashboard from './features/admin/components/AdminDashboard'
+
+// Rute yang memuat Toast UI (editor/viewer) dipisah agar halaman awal ringan.
+const PublicArticleDetail = lazy(() => import('./features/blog/components/PublicArticleDetail'))
+const AuthorDashboard = lazy(() => import('./features/blog/components/AuthorDashboard'))
+const AdminDashboard = lazy(() => import('./features/admin/components/AdminDashboard'))
 
 const SIMPLE_ROUTES = ['/author', '/admin', '/login', '/register']
 
@@ -117,7 +119,9 @@ export default function App() {
         onLogin={() => setLoginOpen(true)}
         onLogout={handleLogout}
       />
-      <main>{page}</main>
+      <main>
+        <Suspense fallback={<p className="px-6 py-10 text-slate-500">Memuat halaman…</p>}>{page}</Suspense>
+      </main>
       {loginOpen && <AuthModal onClose={() => setLoginOpen(false)} onSuccess={handleLogin} onNavigate={navigate} />}
     </div>
   )

@@ -32,14 +32,14 @@ export default function StickyNavbar({ user, theme, accent, onAccent, onToggleTh
           Delcom Blog
         </a>
 
-        <div className="flex flex-wrap items-center gap-1">
+        <div className="flex flex-wrap items-center gap-2">
           {ACCENTS.map((a) => (
             <button
               key={a}
               aria-label={`Aksen ${a}`}
               onClick={() => onAccent(a)}
               style={{ background: swatch[a] }}
-              className={`h-4 w-4 rounded-full ${accent === a ? 'ring-2 ring-offset-2 ring-slate-400' : ''}`}
+              className={`h-6 w-6 rounded-full ${accent === a ? 'ring-2 ring-offset-2 ring-slate-400' : ''}`}
             />
           ))}
           <button aria-label="Ganti tema" onClick={onToggleTheme} className="rounded-lg p-2 hover:bg-slate-100 dark:hover:bg-slate-800">

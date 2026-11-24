@@ -49,14 +49,14 @@ describe('App', () => {
   it('beranda publik dan navigasi ke detail (pushState)', async () => {
     render(<App />)
     await userEvent.click(screen.getByText('HOME'))
-    expect(screen.getByText('DETAIL:halo')).toBeInTheDocument()
+    expect(await screen.findByText('DETAIL:halo')).toBeInTheDocument()
     expect(window.location.pathname).toBe('/posts/halo')
   })
 
   it('sinkron dengan tombol back/forward (popstate) dan refresh di rute aktif', async () => {
     at('/posts/refresh')
     render(<App />)
-    expect(screen.getByText('DETAIL:refresh')).toBeInTheDocument()
+    expect(await screen.findByText('DETAIL:refresh')).toBeInTheDocument()
     act(() => {
       at('/entah')
       window.dispatchEvent(new PopStateEvent('popstate'))
