@@ -9,6 +9,7 @@ export const setToken = (token) => {
 
 /**
  * Wrapper fetch terpusat untuk seluruh endpoint /api.
+ * - Alamat backend diambil dari VITE_API_URL (kosong = origin yang sama / proxy Vite).
  * - Menyuntikkan header Authorization: Bearer <token> bila `auth` aktif dan token ada.
  * - Mengurai respons standar {status, message, data?}.
  * - Melempar Error(message) dengan properti `status` bila respons bukan 2xx.
@@ -20,7 +21,7 @@ export async function apiRequest(path, { method = 'GET', body, auth = true } = {
   const token = getToken()
   if (auth && token) headers.Authorization = `Bearer ${token}`
 
-  const res = await fetch(`/api${path}`, {
+  const res = await fetch(`${import.meta.env.VITE_API_URL ?? ''}/api${path}`, {
     method,
     headers,
     body: body !== undefined ? JSON.stringify(body) : undefined,

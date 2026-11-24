@@ -24,6 +24,14 @@ describe('token', () => {
 })
 
 describe('apiRequest', () => {
+  it('memakai VITE_API_URL sebagai alamat backend bila diatur', async () => {
+    vi.stubEnv('VITE_API_URL', 'https://api.example.com')
+    const fetchMock = mockFetch(200, {})
+    await apiRequest('/x')
+    expect(fetchMock.mock.calls[0][0]).toBe('https://api.example.com/api/x')
+    vi.unstubAllEnvs()
+  })
+
   it('GET tanpa opsi dan tanpa token', async () => {
     const fetchMock = mockFetch(200, { data: 1 })
     expect(await apiRequest('/x')).toEqual({ data: 1 })
