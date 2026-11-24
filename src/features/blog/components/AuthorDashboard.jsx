@@ -6,7 +6,7 @@ import PostStats from './PostStats'
 import PostModal from '../modals/PostModal'
 import AiPostGeneratorModal from '../modals/AiPostGeneratorModal'
 
-const EMPTY_STATS = { total_posts: 0, total_published: 0, total_draft: 0 }
+const EMPTY_STATS = { total_articles: 0, total_selesai: 0, belum_selesai: 0 }
 
 /** Workspace penulis (full width): statistik, tabel artikel, toggle publikasi, menu kebab. */
 export default function AuthorDashboard({ onNavigate }) {

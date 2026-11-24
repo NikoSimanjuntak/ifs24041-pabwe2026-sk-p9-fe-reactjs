@@ -34,14 +34,14 @@ const posts = [
 beforeEach(() => {
   vi.clearAllMocks()
   listMyPosts.mockResolvedValue(posts)
-  getStats.mockResolvedValue({ total_posts: 2, total_published: 1, total_draft: 1 })
+  getStats.mockResolvedValue({ total_articles: 2, total_selesai: 1, belum_selesai: 1 })
 })
 
 describe('AuthorDashboard', () => {
   it('memuat statistik dan tabel artikel', async () => {
     render(<AuthorDashboard onNavigate={vi.fn()} />)
     expect(await screen.findByText('Terbit')).toBeInTheDocument()
-    expect(screen.getByTestId('stat-total_posts')).toHaveTextContent('2')
+    expect(screen.getByTestId('stat-total_articles')).toHaveTextContent('2')
     expect(screen.getByLabelText('Terbitkan Terbit')).toHaveAttribute('aria-checked', 'true')
     expect(screen.getByLabelText('Terbitkan Draf')).toHaveAttribute('aria-checked', 'false')
   })

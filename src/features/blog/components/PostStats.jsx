@@ -1,7 +1,7 @@
 const CARDS = [
-  ['total_posts', 'Total Artikel'],
-  ['total_published', 'Total Selesai/Terbit'],
-  ['total_draft', 'Belum Selesai/Draf'],
+  ['total_articles', 'Total Artikel'],
+  ['total_selesai', 'Total Selesai/Terbit'],
+  ['belum_selesai', 'Belum Selesai/Draf'],
 ]
 
 /** 3 kartu statistik penulis. */

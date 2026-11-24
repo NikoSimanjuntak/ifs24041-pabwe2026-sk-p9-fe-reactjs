@@ -8,8 +8,8 @@ export const setToken = (token) => {
 }
 
 /**
+ * Alamat backend dari VITE_API_URL (kosong = origin yang sama / proxy Vite).
  * Wrapper fetch terpusat untuk seluruh endpoint /api.
- * - Alamat backend diambil dari VITE_API_URL (kosong = origin yang sama / proxy Vite).
  * - Menyuntikkan header Authorization: Bearer <token> bila `auth` aktif dan token ada.
  * - Mengurai respons standar {status, message, data?}.
  * - Melempar Error(message) dengan properti `status` bila respons bukan 2xx.
